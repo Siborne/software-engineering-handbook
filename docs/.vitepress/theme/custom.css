@@ -1,0 +1,5 @@
+/* Override VitePress transparent navbar on home page */
+.VPNav {
+  background-color: var(--vp-nav-bg-color) !important;
+  backdrop-filter: blur(8px);
+}
