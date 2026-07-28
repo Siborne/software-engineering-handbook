@@ -22,7 +22,7 @@ export default defineConfig({
   base: '/software-engineering-handbook/',
 
   head: [
-    ['link', { rel: 'icon', href: '/logo.svg' }],
+    ['link', { rel: 'icon', href: '/software-engineering-handbook/logo.ico' }],
   ],
 
   themeConfig: {
