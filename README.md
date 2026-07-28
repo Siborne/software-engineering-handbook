@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="docs/public/logo.png" width="120" alt="Software Engineering Handbook">
+</p>
+
 # Software Engineering Handbook
 
 从 Java Developer 到 AI Software Engineer 的成长路线 — 一个面向后端开发者的软件工程知识库，系统梳理从编程语言、后端框架、数据库、系统设计到 AI 工程化的完整技术图谱。
