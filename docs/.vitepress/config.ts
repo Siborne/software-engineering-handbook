@@ -19,6 +19,7 @@ export default defineConfig({
   title: 'Software Engineering Handbook',
   description: '从 Java Developer 到 AI Software Engineer 的成长路线',
   lang: 'zh-CN',
+  base: '/software-engineering-handbook/',
 
   head: [
     ['link', { rel: 'icon', href: '/logo.svg' }],
