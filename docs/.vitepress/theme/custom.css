@@ -2,4 +2,5 @@
 .VPNav {
   background-color: var(--vp-nav-bg-color) !important;
   backdrop-filter: blur(8px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
