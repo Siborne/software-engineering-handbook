@@ -9,6 +9,7 @@
     "docs:preview": "vitepress preview docs"
   },
   "devDependencies": {
+    "@lucide/vue": "^1.27.0",
     "vitepress": "^1.6.0",
     "vue": "^3.0.0"
   },
