@@ -1,6 +1,118 @@
-/* Override VitePress transparent navbar on home page */
+/* ==========================================================
+   Global nav bar (non-home pages)
+========================================================== */
 .VPNav {
   background-color: var(--vp-nav-bg-color) !important;
   backdrop-filter: blur(8px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* ==========================================================
+   Home landing: theme-aware neon design
+   The home page follows the site light/dark theme. Light mode
+   is a soft violet-white background, dark mode keeps the neon
+   look. All colors are driven by the --home-* variables below.
+========================================================== */
+:root {
+  --home-bg: #f7f7fb;
+  --home-hero-glow-1: rgba(124, 58, 237, 0.12);
+  --home-hero-glow-2: rgba(219, 39, 119, 0.1);
+  --home-hero-glow-3: rgba(8, 145, 178, 0.08);
+  --home-grid-line: rgba(30, 20, 80, 0.06);
+  --home-hero-top-glow: rgba(124, 58, 237, 0.1);
+  --home-title-gradient: linear-gradient(115deg, #6d28d9 0%, #c026d3 40%, #db2777 70%, #ea580c 100%);
+  --home-badge-bg: rgba(124, 58, 237, 0.08);
+  --home-badge-border: rgba(124, 58, 237, 0.35);
+  --home-badge-text: #6d28d9;
+  --home-icon-bg: linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(219, 39, 119, 0.14));
+  --home-icon-border: rgba(124, 58, 237, 0.25);
+  --home-icon-glow: 0 0 18px rgba(124, 58, 237, 0.35);
+  --home-step-bg: linear-gradient(180deg, rgba(124, 58, 237, 0.07), rgba(255, 255, 255, 0.02));
+  --home-step-icon-bg: linear-gradient(135deg, #8b5cf6, #ec4899);
+  --home-step-icon-border: rgba(124, 58, 237, 0.3);
+  --home-cta-bg: linear-gradient(135deg, rgba(124, 58, 237, 0.09), rgba(219, 39, 119, 0.07), rgba(8, 145, 178, 0.06));
+  --home-cta-glow: rgba(124, 58, 237, 0.12);
+  --home-logo-glow: conic-gradient(
+    from 0deg,
+    rgba(124, 58, 237, 0.35),
+    rgba(219, 39, 119, 0.35),
+    rgba(8, 145, 178, 0.35),
+    rgba(124, 58, 237, 0.35)
+  );
+  --home-logo-shadow: 0 18px 40px rgba(124, 58, 237, 0.25);
+  --home-card-hover-shadow:
+    0 14px 40px rgba(20, 10, 50, 0.12),
+    0 0 0 1px color-mix(in srgb, var(--vp-c-brand-1) 45%, transparent),
+    0 0 32px color-mix(in srgb, var(--vp-c-brand-1) 16%, transparent);
+  --home-step-hover-border: color-mix(in srgb, var(--vp-c-brand-1) 70%, transparent);
+}
+
+.dark {
+  --home-bg: #0b0817;
+  --home-hero-glow-1: rgba(168, 85, 247, 0.28);
+  --home-hero-glow-2: rgba(236, 72, 153, 0.22);
+  --home-hero-glow-3: rgba(34, 211, 238, 0.13);
+  --home-grid-line: rgba(255, 255, 255, 0.045);
+  --home-hero-top-glow: rgba(139, 92, 246, 0.18);
+  --home-title-gradient: linear-gradient(115deg, #c4b5fd 0%, #f0abfc 35%, #fda4af 65%, #fcd34d 100%);
+  --home-badge-bg: rgba(168, 85, 247, 0.12);
+  --home-badge-border: rgba(168, 85, 247, 0.4);
+  --home-badge-text: #c4b5fd;
+  --home-icon-bg: linear-gradient(135deg, rgba(139, 92, 246, 0.28), rgba(236, 72, 153, 0.28));
+  --home-icon-border: rgba(255, 255, 255, 0.12);
+  --home-icon-glow: 0 0 18px rgba(168, 85, 247, 0.6);
+  --home-step-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  --home-step-icon-bg: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.5), rgba(236, 72, 153, 0.35));
+  --home-step-icon-border: rgba(255, 255, 255, 0.18);
+  --home-cta-bg: linear-gradient(135deg, rgba(139, 92, 246, 0.16), rgba(236, 72, 153, 0.12), rgba(34, 211, 238, 0.1));
+  --home-cta-glow: rgba(168, 85, 247, 0.25);
+  --home-logo-glow: conic-gradient(
+    from 0deg,
+    rgba(168, 85, 247, 0.55),
+    rgba(236, 72, 153, 0.55),
+    rgba(34, 211, 238, 0.55),
+    rgba(168, 85, 247, 0.55)
+  );
+  --home-logo-shadow: 0 18px 40px rgba(139, 92, 246, 0.35);
+  --home-card-hover-shadow:
+    0 14px 40px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(168, 85, 247, 0.3),
+    0 0 32px rgba(139, 92, 246, 0.18);
+  --home-step-hover-border: rgba(236, 72, 153, 0.5);
+}
+
+.VPHome {
+  background: var(--home-bg);
+}
+
+.VPHomeHero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 600px at 85% -10%, var(--home-hero-glow-1), transparent 60%),
+    radial-gradient(900px 500px at 5% 110%, var(--home-hero-glow-2), transparent 60%),
+    radial-gradient(700px 400px at 55% 120%, var(--home-hero-glow-3), transparent 60%);
+}
+
+/* grid lines */
+.VPHomeHero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--home-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--home-grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 75% at 50% 15%, #000 25%, transparent 75%);
+  mask-image: radial-gradient(ellipse 90% 75% at 50% 15%, #000 25%, transparent 75%);
+}
+
+/* top glow */
+.VPHomeHero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(500px 300px at 50% 0%, var(--home-hero-top-glow), transparent 70%);
 }
