@@ -27,6 +27,7 @@ export default defineConfig({
 
   themeConfig: {
     logo: '/logo.svg',
+    siteTitle: '软件工程手册',
 
     search: {
       provider: 'local',

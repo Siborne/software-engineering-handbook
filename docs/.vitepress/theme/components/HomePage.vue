@@ -189,13 +189,13 @@ const steps = [
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #8b5cf6, #ec4899);
-  box-shadow: 0 8px 28px rgba(139, 92, 246, 0.45), 0 4px 12px rgba(236, 72, 153, 0.35);
+  background: linear-gradient(135deg, #4f46e5, #3451b2);
+  box-shadow: 0 8px 28px rgba(52, 81, 178, 0.45), 0 4px 12px rgba(79, 70, 229, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 36px rgba(139, 92, 246, 0.6), 0 6px 16px rgba(236, 72, 153, 0.45);
+  box-shadow: 0 12px 36px rgba(52, 81, 178, 0.6), 0 6px 16px rgba(79, 70, 229, 0.45);
 }
 
 .btn-ghost {

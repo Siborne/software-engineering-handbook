@@ -7,81 +7,112 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
+/* Safety net: on pages with a sidebar the nav title area is a
+   fixed width (--vp-sidebar-width). If the title text ever
+   grows too long again, ellipsize instead of overlapping the
+   search box to its right. */
+@media (min-width: 960px) {
+  .VPNavBar.has-sidebar .VPNavBarTitle .title {
+    min-width: 0;
+  }
+
+  .VPNavBar.has-sidebar .VPNavBarTitle .title span {
+    flex: 1 1 auto;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
 /* ==========================================================
-   Home landing: theme-aware neon design
-   The home page follows the site light/dark theme. Light mode
-   is a soft violet-white background, dark mode keeps the neon
-   look. All colors are driven by the --home-* variables below.
+   Home landing: theme-aware indigo design
+   Anchored on VitePress' default brand color #3451b2 so the
+   home page matches the site's accent colors exactly. Light
+   mode is a cool blue-white, dark mode is deep blue-black
+   with glowing indigo accents. All colors are driven by the
+   --home-* variables below.
 ========================================================== */
 :root {
-  --home-bg: #f7f7fb;
-  --home-hero-glow-1: rgba(124, 58, 237, 0.12);
-  --home-hero-glow-2: rgba(219, 39, 119, 0.1);
-  --home-hero-glow-3: rgba(8, 145, 178, 0.08);
-  --home-grid-line: rgba(30, 20, 80, 0.06);
-  --home-hero-top-glow: rgba(124, 58, 237, 0.1);
-  --home-title-gradient: linear-gradient(115deg, #6d28d9 0%, #c026d3 40%, #db2777 70%, #ea580c 100%);
-  --home-badge-bg: rgba(124, 58, 237, 0.08);
-  --home-badge-border: rgba(124, 58, 237, 0.35);
-  --home-badge-text: #6d28d9;
-  --home-icon-bg: linear-gradient(135deg, rgba(124, 58, 237, 0.14), rgba(219, 39, 119, 0.14));
-  --home-icon-border: rgba(124, 58, 237, 0.25);
-  --home-icon-glow: 0 0 18px rgba(124, 58, 237, 0.35);
-  --home-step-bg: linear-gradient(180deg, rgba(124, 58, 237, 0.07), rgba(255, 255, 255, 0.02));
-  --home-step-icon-bg: linear-gradient(135deg, #8b5cf6, #ec4899);
-  --home-step-icon-border: rgba(124, 58, 237, 0.3);
-  --home-cta-bg: linear-gradient(135deg, rgba(124, 58, 237, 0.09), rgba(219, 39, 119, 0.07), rgba(8, 145, 178, 0.06));
-  --home-cta-glow: rgba(124, 58, 237, 0.12);
+  --home-brand-1: #3451b2;
+  --home-brand-2: #3f5cbf;
+
+  --home-bg: #f6f7fc;
+  --home-hero-glow-1: rgba(52, 81, 178, 0.12);
+  --home-hero-glow-2: rgba(99, 102, 241, 0.1);
+  --home-hero-glow-3: rgba(6, 182, 212, 0.08);
+  --home-grid-line: rgba(28, 42, 96, 0.06);
+  --home-hero-top-glow: rgba(52, 81, 178, 0.1);
+  --home-title-gradient: linear-gradient(115deg, #1e3a8a 0%, #3451b2 40%, #4f46e5 75%, #6366f1 100%);
+  --home-badge-bg: rgba(52, 81, 178, 0.08);
+  --home-badge-border: rgba(52, 81, 178, 0.35);
+  --home-badge-text: #3451b2;
+  --home-icon-bg: linear-gradient(135deg, rgba(52, 81, 178, 0.14), rgba(99, 102, 241, 0.14));
+  --home-icon-border: rgba(52, 81, 178, 0.25);
+  --home-icon-glow: 0 0 18px rgba(52, 81, 178, 0.35);
+  --home-step-bg: linear-gradient(180deg, rgba(52, 81, 178, 0.07), rgba(255, 255, 255, 0.02));
+  --home-step-icon-bg: linear-gradient(135deg, #4f46e5, #3451b2);
+  --home-step-icon-border: rgba(52, 81, 178, 0.3);
+  --home-cta-bg: linear-gradient(135deg, rgba(52, 81, 178, 0.09), rgba(99, 102, 241, 0.07), rgba(6, 182, 212, 0.06));
+  --home-cta-glow: rgba(52, 81, 178, 0.12);
   --home-logo-glow: conic-gradient(
     from 0deg,
-    rgba(124, 58, 237, 0.35),
-    rgba(219, 39, 119, 0.35),
-    rgba(8, 145, 178, 0.35),
-    rgba(124, 58, 237, 0.35)
+    rgba(52, 81, 178, 0.35),
+    rgba(99, 102, 241, 0.35),
+    rgba(6, 182, 212, 0.35),
+    rgba(52, 81, 178, 0.35)
   );
-  --home-logo-shadow: 0 18px 40px rgba(124, 58, 237, 0.25);
+  --home-logo-shadow: 0 18px 40px rgba(52, 81, 178, 0.25);
   --home-card-hover-shadow:
-    0 14px 40px rgba(20, 10, 50, 0.12),
+    0 14px 40px rgba(18, 30, 80, 0.12),
     0 0 0 1px color-mix(in srgb, var(--vp-c-brand-1) 45%, transparent),
     0 0 32px color-mix(in srgb, var(--vp-c-brand-1) 16%, transparent);
   --home-step-hover-border: color-mix(in srgb, var(--vp-c-brand-1) 70%, transparent);
 }
 
 .dark {
-  --home-bg: #0b0817;
-  --home-hero-glow-1: rgba(168, 85, 247, 0.28);
-  --home-hero-glow-2: rgba(236, 72, 153, 0.22);
-  --home-hero-glow-3: rgba(34, 211, 238, 0.13);
+  --home-brand-1: #646cff;
+  --home-brand-2: #747bff;
+
+  --home-bg: #0c101f;
+  --home-hero-glow-1: rgba(99, 102, 241, 0.25);
+  --home-hero-glow-2: rgba(52, 81, 178, 0.2);
+  --home-hero-glow-3: rgba(6, 182, 212, 0.12);
   --home-grid-line: rgba(255, 255, 255, 0.045);
-  --home-hero-top-glow: rgba(139, 92, 246, 0.18);
-  --home-title-gradient: linear-gradient(115deg, #c4b5fd 0%, #f0abfc 35%, #fda4af 65%, #fcd34d 100%);
-  --home-badge-bg: rgba(168, 85, 247, 0.12);
-  --home-badge-border: rgba(168, 85, 247, 0.4);
-  --home-badge-text: #c4b5fd;
-  --home-icon-bg: linear-gradient(135deg, rgba(139, 92, 246, 0.28), rgba(236, 72, 153, 0.28));
+  --home-hero-top-glow: rgba(99, 102, 241, 0.16);
+  --home-title-gradient: linear-gradient(115deg, #a5b4fc 0%, #818cf8 40%, #60a5fa 75%, #67e8f9 100%);
+  --home-badge-bg: rgba(99, 102, 241, 0.14);
+  --home-badge-border: rgba(99, 102, 241, 0.4);
+  --home-badge-text: #a5b4fc;
+  --home-icon-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.28), rgba(52, 81, 178, 0.28));
   --home-icon-border: rgba(255, 255, 255, 0.12);
-  --home-icon-glow: 0 0 18px rgba(168, 85, 247, 0.6);
-  --home-step-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
-  --home-step-icon-bg: radial-gradient(circle at 30% 30%, rgba(139, 92, 246, 0.5), rgba(236, 72, 153, 0.35));
+  --home-icon-glow: 0 0 18px rgba(99, 102, 241, 0.55);
+  --home-step-bg: linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+  --home-step-icon-bg: radial-gradient(circle at 30% 30%, rgba(99, 102, 241, 0.5), rgba(52, 81, 178, 0.4));
   --home-step-icon-border: rgba(255, 255, 255, 0.18);
-  --home-cta-bg: linear-gradient(135deg, rgba(139, 92, 246, 0.16), rgba(236, 72, 153, 0.12), rgba(34, 211, 238, 0.1));
-  --home-cta-glow: rgba(168, 85, 247, 0.25);
+  --home-cta-bg: linear-gradient(135deg, rgba(99, 102, 241, 0.16), rgba(52, 81, 178, 0.14), rgba(6, 182, 212, 0.1));
+  --home-cta-glow: rgba(99, 102, 241, 0.25);
   --home-logo-glow: conic-gradient(
     from 0deg,
-    rgba(168, 85, 247, 0.55),
-    rgba(236, 72, 153, 0.55),
-    rgba(34, 211, 238, 0.55),
-    rgba(168, 85, 247, 0.55)
+    rgba(99, 102, 241, 0.5),
+    rgba(52, 81, 178, 0.5),
+    rgba(6, 182, 212, 0.5),
+    rgba(99, 102, 241, 0.5)
   );
-  --home-logo-shadow: 0 18px 40px rgba(139, 92, 246, 0.35);
+  --home-logo-shadow: 0 18px 40px rgba(99, 102, 241, 0.35);
   --home-card-hover-shadow:
     0 14px 40px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(168, 85, 247, 0.3),
-    0 0 32px rgba(139, 92, 246, 0.18);
-  --home-step-hover-border: rgba(236, 72, 153, 0.5);
+    0 0 0 1px rgba(99, 102, 241, 0.3),
+    0 0 32px rgba(99, 102, 241, 0.18);
+  --home-step-hover-border: rgba(99, 102, 241, 0.55);
 }
 
+/* Home page overrides VitePress brand colors so every
+   --vp-c-brand-* usage inside the home page picks up the
+   indigo palette — matching the site's default accent. */
 .VPHome {
+  --vp-c-brand-1: var(--home-brand-1);
+  --vp-c-brand-2: var(--home-brand-2);
   background: var(--home-bg);
 }
 
