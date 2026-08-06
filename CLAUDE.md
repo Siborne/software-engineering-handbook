@@ -37,6 +37,11 @@ docs/
 - Sidebar configs follow a consistent pattern: each file in `docs/.vitepress/sidebar/` exports a typed `DefaultTheme.SidebarItem[]` array, barrel-exported from `index.ts`, and wired into `config.ts`.
 - Page titles and descriptions are set via YAML frontmatter in each `.md` file.
 
+## Superpowers documents
+
+- When using Superpowers, generated documents (plans, specs, etc.) must be written to `dev-docs/`, never to `docs/`.
+- `docs/` is reserved for published VitePress site content; `dev-docs/` holds internal development artifacts.
+
 ## Adding a new content section
 
 1. Create the directory under `docs/` with an `index.md`
