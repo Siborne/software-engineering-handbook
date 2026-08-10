@@ -495,6 +495,7 @@ const steps = [
 }
 
 .cta-icon {
+  display: inline-block;
   margin-bottom: 16px;
   color: var(--vp-c-brand-1);
 }

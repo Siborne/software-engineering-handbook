@@ -147,3 +147,21 @@
   pointer-events: none;
   background: radial-gradient(500px 300px at 50% 0%, var(--home-hero-top-glow), transparent 70%);
 }
+
+/* ==========================================================
+   Home landing: footer & bottom spacing
+========================================================== */
+/* VitePress gives .VPHome a default 96px (128px ≥768px) bottom
+   margin; with the CTA section's own bottom padding that shows
+   as a blank strip of body background under the content. */
+.VPHome {
+  margin-bottom: 0;
+}
+
+/* Footer background follows the body theme color, which clashes
+   with the home background (light #f6f7fc vs #fff, dark #0c101f
+   vs #1e1e20). Blend the footer into the home background so the
+   transition is seamless. */
+.Layout:has(> .VPHome) .VPFooter {
+  background-color: var(--home-bg);
+}
