@@ -1,9 +1,12 @@
 /* ==========================================================
    Global nav bar (non-home pages)
+   NOTE: backdrop-filter intentionally NOT used here — it
+   creates a compositing layer that, on some Chromium/GPU
+   combos, breaks hit-testing of the nav's children (e.g. the
+   mobile hamburger button stops responding to clicks).
 ========================================================== */
 .VPNav {
   background-color: var(--vp-nav-bg-color) !important;
-  backdrop-filter: blur(8px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
