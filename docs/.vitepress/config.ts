@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { withMermaid } from 'vitepress-plugin-mermaid'
 import {
   gettingStartedSidebar,
   learningRoadmapSidebar,
@@ -15,7 +16,7 @@ import {
   careerSidebar,
 } from './sidebar'
 
-export default defineConfig({
+export default withMermaid(defineConfig({
   title: 'Software Engineering Handbook',
   description: '从 Java Developer 到 AI Software Engineer 的成长路线',
   lang: 'zh-CN',
@@ -24,6 +25,12 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/software-engineering-handbook/logo.ico' }],
   ],
+
+  vite: {
+    optimizeDeps: {
+      include: ['mermaid'],
+    },
+  },
 
   themeConfig: {
     logo: '/logo.svg',
@@ -98,4 +105,4 @@ export default defineConfig({
       text: '最后更新',
     },
   },
-})
+}))

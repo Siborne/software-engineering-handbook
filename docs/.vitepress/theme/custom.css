@@ -168,3 +168,64 @@
 .Layout:has(> .VPHome) .VPFooter {
   background-color: var(--home-bg);
 }
+
+/* ==========================================================
+   Documentation custom containers: SVG icons
+========================================================== */
+:root {
+  --doc-icon-tip: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M9%2018h6M10%2022h4M12%202a7%207%200%200%200-4%2012.7V17h8v-2.3A7%207%200%200%200%2012%202z%27%2F%3E%3C%2Fsvg%3E");
+  --doc-icon-info: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Ccircle%20cx%3D%2712%27%20cy%3D%2712%27%20r%3D%2710%27%2F%3E%3Cpath%20d%3D%27M12%2016v-4M12%208h.01%27%2F%3E%3C%2Fsvg%3E");
+  --doc-icon-warning: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27M12%203%202%2021h20L12%203z%27%2F%3E%3Cpath%20d%3D%27M12%209v5M12%2017h.01%27%2F%3E%3C%2Fsvg%3E");
+  --doc-icon-danger: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Ccircle%20cx%3D%2712%27%20cy%3D%2712%27%20r%3D%2710%27%2F%3E%3Cpath%20d%3D%27M12%208v5M12%2016h.01%27%2F%3E%3C%2Fsvg%3E");
+  --doc-icon-chevron: url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2024%2024%27%20fill%3D%27none%27%20stroke%3D%27black%27%20stroke-width%3D%272%27%20stroke-linecap%3D%27round%27%20stroke-linejoin%3D%27round%27%3E%3Cpath%20d%3D%27m9%2018%206-6-6-6%27%2F%3E%3C%2Fsvg%3E");
+}
+
+.vp-doc .custom-block {
+  --doc-container-icon: var(--doc-icon-info);
+}
+
+.vp-doc .custom-block.tip {
+  --doc-container-icon: var(--doc-icon-tip);
+}
+
+.vp-doc .custom-block.warning,
+.vp-doc .custom-block.caution {
+  --doc-container-icon: var(--doc-icon-warning);
+}
+
+.vp-doc .custom-block.danger {
+  --doc-container-icon: var(--doc-icon-danger);
+}
+
+.vp-doc .custom-block.details {
+  --doc-container-icon: var(--doc-icon-chevron);
+}
+
+.vp-doc .custom-block .custom-block-title::before,
+.vp-doc .custom-block.details summary::before {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.45em;
+  vertical-align: -0.12em;
+  background-color: currentColor;
+  -webkit-mask: var(--doc-container-icon) center / contain no-repeat;
+  mask: var(--doc-container-icon) center / contain no-repeat;
+}
+
+.vp-doc .custom-block.details summary {
+  list-style: none;
+}
+
+.vp-doc .custom-block.details summary::-webkit-details-marker {
+  display: none;
+}
+
+.vp-doc .custom-block.details summary::before {
+  transition: transform 0.2s ease;
+}
+
+.vp-doc .custom-block.details[open] summary::before {
+  transform: rotate(90deg);
+}
