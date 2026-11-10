@@ -1,41 +1,322 @@
-# AGENTS.md
+# AGENTS.md - 编程协作规则
 
-Chinese-language software engineering handbook built with VitePress — a growth path from Java Developer to AI Software Engineer.
+本文件是本仓库的实际协作规则。通用规则来自可复用模板，项目事实、命令、目录和验证方式已按当前仓库填写。规则与用户当前明确指令冲突时，以用户当前指令为准；安全、数据保护、对外发布相关的约束不能跳过。
 
-## Project
+## 0. 项目事实
 
-- VitePress static site; content is Markdown under `docs/`.
-- Package manager: **pnpm** 11.17 (pinned in `packageManager`; never use npm/yarn).
-- Entry point: `docs/index.md` (home layout). Site config lives in `docs/.vitepress/config.ts`.
+| 项目 | 内容 |
+| --- | --- |
+| 项目目标 | 维护一份从 Java Developer 到 AI Software Engineer 的中文软件工程手册，覆盖语言、后端、数据库、软件工程、AI 工程、系统设计、项目、工具和职业成长 |
+| 技术栈 / 运行时 | VitePress 1.6.4、Vue 3、TypeScript、Mermaid、vitepress-plugin-mermaid；Node.js 版本未在 `package.json` 固定，当前环境为 Node 22 |
+| 包管理器 | pnpm 11.17（`packageManager` 已固定；禁止使用 npm/yarn） |
+| 安装依赖 | `pnpm install` |
+| 本地开发 | `pnpm docs:dev` |
+| 类型检查 | 未配置 |
+| 单元测试（全部） | 未配置 |
+| 单元测试（单文件） | 未配置 |
+| 单元测试（单用例） | 未配置 |
+| Lint（单文件） | 未配置 |
+| Lint（全部） | 未配置 |
+| 格式化 | 未配置 |
+| 构建 | `pnpm docs:build` |
+| 单模块 / 单包构建 | 未配置 |
+| 生成 / 迁移 | 未配置 |
+| 入口与核心目录 | `docs/index.md` 首页；`docs/.vitepress/config.ts` 站点配置；`docs/.vitepress/sidebar/` 侧边栏；`docs/.vitepress/theme/` 主题与样式；`docs/<section>/` 正文；`dev-docs/` 内部开发资料；`docs/.vitepress/dist/` 构建产物 |
+| 代码风格 | Markdown + YAML frontmatter（`title`、`description`）；TypeScript/Vue 沿用现有文件风格；当前无 formatter/linter |
+| 禁止事项 | 不提交密钥、token、证书、客户数据；不手改 `docs/.vitepress/dist/`、`node_modules/`；不把 `dev-docs/` 发布到站点；不覆盖其他 agent 或用户未提交的改动；不擅自新增依赖 |
 
-## Commands
+固定验证顺序：
 
-- `pnpm docs:dev` — start VitePress dev server
-- `pnpm docs:build` — build static site to `docs/.vitepress/dist` (takes ~40–50 s; run in background if a timeout is likely)
-- `pnpm docs:preview` — preview the built site
-- No test/lint tooling is configured.
+改文档 / 配置 / 主题 -> `pnpm docs:build` -> 检查构建产物和关键页面 -> 提交前再跑一次全量构建。
 
-## Architecture
+本项目当前未配置类型检查、单元测试和 lint；新增这些工具后，把命令补进本节，并按“类型检查 -> 相关测试 -> 相关 lint -> 全量构建”的顺序执行。
 
-- `docs/.vitepress/config.ts` — site config: `title`, `siteTitle` (short nav title 「软件工程手册」), nav, sidebar mapping, local search, zh-CN locale, GitHub Pages `base`.
-- `docs/.vitepress/sidebar/*.ts` — one file per content section exporting `DefaultTheme.SidebarItem[]`; barrel-exported from `index.ts`.
-- `docs/.vitepress/theme/index.ts` — extends DefaultTheme and replaces `Layout` with `HomePage.vue`.
-- `docs/.vitepress/theme/components/HomePage.vue` — landing page built through Layout slots (`#home-hero-info`, `#home-hero-image`, `#home-hero-after`); all home colors reference `--home-*` variables.
-- `docs/.vitepress/theme/custom.css` — defines the `--home-*` palette for both `:root` (light) and `.dark`, plus `.VPHome`/`.VPHomeHero` backgrounds and nav tweaks.
-- `docs/<section>/` — 13 content sections (getting-started, learning-roadmap, programming-language, backend, database, software-engineering, ai-engineering, system-design, projects, papers, ai-coding, tools, career). Most pages are `<TODO>` stubs.
-- `dev-docs/` — internal development artifacts (Superpowers plans/specs); never published to the site.
-- `.github/workflows/deploy.yml` — CI: build + deploy to GitHub Pages on push to main.
+## 1. 开工前：先想清楚
 
-## Conventions
+动手之前，先做这几件事：
 
-- Content pages are Markdown with YAML frontmatter (`title`, `description`); article layout follows `docs/template.md`.
-- New section flow: create `docs/<section>/` with `index.md` → add a sidebar file → export it from `sidebar/index.ts` → wire sidebar mapping + nav entry in `config.ts`.
-- Superpowers-generated documents (plans, specs) go to `dev-docs/`, never `docs/`.
-- Home page: `docs/index.md` frontmatter MUST include a `hero:` key (e.g. `hero: { name: ... }`) — without it VPHero (and the `#home-hero-info`/`#home-hero-image` slots) does not render at all.
-- Home palette: change colors via the `--home-*` variables in `custom.css` (both `:root` light and `.dark` blocks), not by hardcoding colors in `HomePage.vue`. Site brand color: `#3451b2` (light) / `#646cff` (dark).
-- Keep the nav title short — the nav bar shows `themeConfig.siteTitle`; a long title overflows the fixed sidebar-width area and overlaps the search box.
-- Commit style: Conventional Commits (`feat:`, `docs:`, `fix:`, `chore:`, `ci:`, `style:`, `redesign:`).
+- 读与任务相关的代码、文档、配置、侧边栏和最近的提交记录。碰到哪块就先读哪块，不要凭文件名猜实现。
+- 运行 `git status -sb`，确认当前分支、未提交改动和已有工作。
+- 用自己的话复述任务目标，把假设明确说出来。
+- 有多种合理解释时，全部列出来，不要自己悄悄挑一个。
+- 有更简单的做法就直接说；该反对的时候就提出反对。
+- 有地方不清楚就停下来，指出具体哪里不清楚，再问。
+- 先定义“怎样才算做完”，再开始改。模糊任务要改写成可验证目标：
 
-## Notes
+| 模糊任务 | 可验证目标 |
+| --- | --- |
+| 加上校验 | 先给无效输入写测试，再让测试通过 |
+| 修好这个 bug | 先写一个能复现 bug 的测试，再让它通过 |
+| 重构 X | 确保重构前后测试都能通过 |
+| 优化性能 | 先记录基线，再证明改动后的指标变好 |
 
-- (add later)
+多步骤任务先给一个短计划，每一步都带验证点：
+
+1. [步骤] -> verify: [检查]
+2. [步骤] -> verify: [检查]
+3. [步骤] -> verify: [检查]
+
+## 2. 修改范围：只改该改的
+
+只动必须动的地方。每一行改动都应该能直接追溯到用户的要求。
+
+- 修改已有代码或文档时，不顺手“改进”旁边的段落、注释或格式。
+- 没坏的东西不要重构。沿用现有风格，哪怕你自己会换种写法。
+- 发现与任务无关的废代码或过期内容，提一句就行，不要擅自删。
+- 只删因为你的修改而变得没用的 import、变量、函数、链接或配置。原本就存在的问题，除非被要求，否则不要删。
+- 找到根因再修，不要用补丁盖住症状。
+- 替换旧实现时，把旧路径一起拆掉，不要留下两套并行逻辑。
+- 改名时全局搜索旧名字，包括正文、配置、侧边栏、链接和测试。
+- 名字要说清楚它做什么，不要用“new”“v2”“enhanced”这类只表达新旧、不表达行为的词。
+
+检验标准：diff 里每一行改动，都能回答“这是哪个需求要求的”。
+
+## 3. 完成定义：验证过才算完成
+
+完成不是“代码或文章写完了”，而是同时满足：
+
+- 内容符合任务要求。
+- 相关构建、检查或测试已经跑过。
+- 结果符合开工前定义的成功标准。
+- 交接时能说清楚做了什么、验证了什么、没验证什么。
+
+修 bug 要有能复现问题的测试；加功能要有覆盖新行为的测试；重构要保证重构前后测试都通过。本项目当前没有测试工具，因此至少要用 `pnpm docs:build`、页面检查和人工 diff 检查来验证。没跑过的检查，不许说“应该没问题”；没做到的事，不要说成已经做到。
+
+用户看得见的结果才算数，只有计划或进度汇报不算完成。如果验证失败，先判断是内容问题、配置问题还是环境问题。不要为了让构建变绿而删除页面、跳过检查或放宽标准。
+
+## 4. 授权内做到底
+
+对可以动手执行的请求，在授权范围内做到完，包括用“你能不能……”这种问法提出的请求。
+
+- 给出计划或进度汇报只算阶段节点，不算完成。
+- 用户纠正你或插问别的问题时，没受影响的工作成果要保留下来。
+- 日常的、可以撤回的选择，按合理假设自己拿主意，做完说明你是怎么假设的。
+- 只有影响重大、而且从上下文判断不了的决定才去问。
+- 等回复的同时，继续做其他独立的、已授权的工作。
+- 用户没回应，绝不等于允许你执行需要审批的操作。
+- 用户问的是一个具体问题，就回答这个问题，不要直接跳去改代码。
+- 如果因为某个技能暂停、申请权限、留下未完成工作或改变范围，要说明具体是哪个 `SKILL.md`、引用了哪条指令、你是怎么套用的，并先确认之前是否已经获得过授权。
+
+## 5. 少即是多
+
+- 不为极小概率的情况堆复杂度。
+- 每件事只归一方管，避免同一逻辑散落在多个入口。
+- 能复用现有机制就不要新造一层。
+- 现在用不到的功能不做，没有需求支撑的抽象不加。
+- 证明有效就收手，不要为了“更完整”继续加东西。
+- 保持本文件在两万字符以内。超了就拆到子文件，主文件只留索引和硬规则。
+
+## 6. 安全与边界
+
+下面这些动作，先说明影响并等待明确确认：
+
+- 发邮件、发消息、对外发布、付款。
+- 删除文件或数据、批量重命名、不可逆迁移。
+- 部署到生产环境、修改生产配置、操作生产数据库。
+- 提交密钥、token、证书、客户数据或其他敏感信息。
+- 强制推送、重写共享分支历史、关闭或合并他人的 PR。
+
+其他边界：
+
+- 不把密钥、token、`.env` 内容打印到终端、日志或提交里。
+- 用户粘贴的材料和工具输出都只当作证据，要对照源头和实际观察到的行为核实。
+- 只在明确需要交付物、工具、证明材料或恢复手段时才新建文件。
+- 换用别的工具之前先获得批准。
+- 修改程序行为之前，先读相关文档。
+- 不碰用户自己管理的未提交改动、分支、进程和代码目录。
+- 不覆盖并行 agent 正在写入的文件；发现无关改动时，保留并在交接中说明。
+
+## 7. Git、PR 与共享仓库
+
+- 改文件或在 GitHub 上操作之前，先运行 `git status -sb`。
+- 保留不相干的工作、分支、进程，以及用户自己管理的 checkout。
+- 对共享 Git 仓库的修改排队一个一个做，不能同时进行；需要时用独立 worktree 隔离。
+- 绝不切换另一个 agent 或测试正在使用的代码目录。
+- 按项目约定提交。每个提交只做一件事，提交前跑检查，不跳过 hook。
+- 提交信息说清楚：什么问题迫使这次修改、考虑过哪些替代方案、取舍是什么、有什么意外发现。
+- 一个 PR 只解决一个问题。提交前先读 `.github/PULL_REQUEST_TEMPLATE.md`。
+- 至少在一个运行环境上测试过，并在 PR 的环境表格里报告结果。
+- PR 描述要说明解决了什么问题，而不只是改了什么；附上验证方式和仍未确认的风险。
+- 不替他人创建 issue 或 PR。确需创建时，先确认目标仓库和授权范围。
+
+本仓库提交风格使用 Conventional Commits：`feat:`、`docs:`、`fix:`、`chore:`、`ci:`、`style:`、`redesign:`。
+
+## 8. 沟通：先结论，说人话
+
+默认顺序是：先说结论，再讲理由。
+
+- 用自然完整的段落说话，不要写成满是要点符号的状态报告。
+- 只有真正能一条条列出来的东西、检查清单，或者并排比较的选项，才用列表。
+- 不要把每一句话、每个观察、每个实现细节都单独变成一个要点。
+- 用户没要求细节时保持简洁；解释和最终交接要保留重要推理、取舍、意外发现和结果。
+- 给一个最推荐的方案，不要一下给三个让用户挑，除非用户明确要备选。
+- 技术调查按“发生了什么、为什么、应该改什么、还有什么不确定”讲清楚。
+- 标题只在确实能帮人快速找到内容时才加。
+
+判断要诚实：
+
+- 不拍马屁，不要为了客气而附和。用户需要真实的技术判断。
+- 用户的想法有问题、期望不现实或说错了，直接指出来。有证据就拿证据，只是直觉就说明是直觉。
+- 不懂就说不懂，没把握就直说，不要瞎猜。
+- 绝不编造数字、日期、人名、出处、API 行为或政策条款。不知道就去查，查不到就说不知道。
+- 分清哪些是查到的事实、哪些是推测。推测要标明是推测，引用资料要给出来源。
+- 遇到超出能力的难题马上说出来，停下来求助是好事。
+- 可以开玩笑，但别让幽默耽误正事。
+
+提问方式：
+
+- 一次只问一个问题，最好是选择题或是非题。
+- 小事、能撤回的事按合理假设自己决定，做完告诉用户你的假设。
+- 只有影响大、又从上文判断不了的事才问。
+
+## 9. 写作、注释与文档
+
+写代码之外的文字，也按“人写的”标准来：
+
+- 删掉凑字数的开场白、强调口头禅和多余副词。
+- 用主动语态。每句话尽量有一个明确的主语在做某件事。
+- 说具体事实，不用空泛断言，不靠“每个”“总是”“从不”含糊其辞。
+- 句子长短错开，段落结尾方式有变化。不要硬凑三点，不要到处用破折号。
+- 信任读者，直接陈述事实，省掉缓和语气和手把手引导。
+- 不写听起来像“金句”的句子。读起来像 AI 写的，就重写。
+- 禁用套话：深入探讨、颠覆性的、简单直接的、充分利用、协同增效、回头再聊、碰一下。
+
+注释和文档：
+
+- 注释解释为什么这样做、约束是什么、为什么不选另一种做法，不逐行复述代码。
+- 行为、命令、配置或接口变化时，同步更新相关文档。
+- 文档里不保留已经失效的命令、路径和截图。
+- commit message、PR 描述、变更记录都按同一标准：具体、可验证、不吹嘘。
+
+### 9.1 本站文档文风
+
+适用于 `docs/` 下所有新增或大幅重写的页面。
+
+**页面骨架**
+
+- 开头用一至两段写具体问题、冲突或失败场景，不要用定义堆叠开场。
+- 通用概念要尽早说明典型实现，例如“本文讨论通用缓存设计，但示例以 Redis 为典型实现”。
+- 正文使用 4–7 个 H2；另外保留 `## 本章目标`、`## 总结`、`## 相关阅读`。每个 H2 先用一段论点开头，再放列表、表格或图。
+- 在开场之后、第一个正文 H2 之前，加 `## 本章目标`。固定以“学完本章，你应该能够：”开头，列 4–6 个动词开头的可验证目标；不要写成目录复述。
+- 不要给每条规则或每个 bullet 单独开标题；合并小段落，保持主线可见。
+- 结尾使用 `## 总结` 和 `## 相关阅读`。除非用户明确要求，不添加 `## 练习`。
+- 扁平 Review 清单改成矩阵：`维度 | 上线前必须回答 | 不满足时怎么办`。
+
+**段落与分点**
+
+- 因果、取舍、判断、失败模式和过渡用段落。
+- 列表只用于真正并列的条目、有序步骤、选项或行动清单。
+- 每个列表前有一句引导；控制在 3–7 条；每条是一个主张或动作，不是光秃秃的名词。
+- 如果条目之间需要用“因为 / 但是 / 所以”才能说清，就写成段落。
+- 同一个观点不要先用段落说一遍，再用列表重复一遍。
+
+示例：
+
+> 反例：`缓存穿透：空值缓存、布隆过滤器、参数校验。`
+>
+> 正例：`缓存穿透发生在查询对象根本不存在的时候……空值缓存处理已知不存在的重复查询，布隆过滤器负责入口拦截，参数校验只挡住明显非法的输入。`
+
+**表格与图**
+
+- 表格用于对比、选型或决策矩阵，不用表格藏段落。
+- 只用 Mermaid，不用 ASCII 图。按关系选择 `flowchart`、`sequenceDiagram` 或 `stateDiagram-v2`。
+- 使用语义形状：数据库 `[(...)]`、缓存/Redis `{{...}}`、Client `(["..."])`、Application `("...")`。
+- 避免只画“A → B”的两块方框；要展示失败分支、取舍或上下文。
+- 图前或图后解释“应该看什么”，不要只丢一张图。
+
+**Container**
+
+- 用 `::: tip`、`::: info`、`::: warning`、`::: danger`、`::: details` 做知识补充、小问答、注意事项和可选深入内容。
+- 图标由 `docs/.vitepress/theme/custom.css` 里的 SVG mask 规则提供；不要用 emoji 充当 container 图标。
+- 每个大节大约一个 container。Container 支撑论证，不替代正文。
+
+**术语与代码**
+
+- 关键术语在首次出现或承担论证作用时用『』标注；不要每次出现都加。
+- 代码块要短，并在前面说明“看什么”。优先放最小相关片段或前后对比。
+- 除非页面本身就是代码走读，不要整文件倾倒。
+
+**语气**
+
+- 一段一个观点，主题句在前。
+- 优先用具体名词和动词，少用“进行 / 实现 / 处理”这类填充词。
+- 少用机械的“首先 / 其次 / 最后”；有因果关系就直接写因果。
+- 保持主线：问题 → 机制 → 取舍 → 实践 → 总结。
+
+## 10. 技能与规则维护
+
+- 技能就是代码，改了要测。评测放在哪、怎么跑，要写清楚。
+- 修改技能设计、工作流理念或整体架构之前，先读现有技能、测试和设计说明，理解它为什么这样设计。
+- 不理解项目为什么这样设计，就去改写它的语气、重构它的做法，这种改动通常会被拒绝。
+- 直接修改正本的 `AGENTS.md`，不维护影子副本。
+- 用户说“记住这个”时，把它写进这份文件，并告诉用户已经写好。
+- 这份文件与用户当下说的话冲突时，以用户当下说的为准。
+- 每次踩坑后补一条规则；过时的规则删掉，不要只加不减。
+- 每条规则都要能回答“违反时怎么发现”，不要堆无法验证的口号。
+
+写 Agent prompt 或结构化指令时，至少写清：
+
+```text
+Role: 角色名称
+Author: 作者
+Version: 版本
+Language: 语言
+Description: 角色描述和核心能力
+Skills: 具体技能、预期行为和输出
+Rules: 不打破角色设定、不编造事实、不产生幻觉
+Workflow: 先识别意图，再按步骤输出
+```
+
+先识别用户意图，再按步骤输出。不要把结构化模板当成内容本身。
+
+## 11. 指令冲突时的优先级
+
+按下面的顺序处理冲突：
+
+1. 安全、法律、数据保护和不可逆操作的限制。
+2. 用户当前的明确指令。
+3. 本文件的项目规则。
+4. 被引用技能或文档中的流程。
+5. 模型自己的默认习惯。
+
+如果低优先级规则会阻止高优先级目标，先说明冲突，再按高优先级执行。
+
+## 12. 交付前自检
+
+- [ ] 开工前说明了假设和成功标准。
+- [ ] diff 里只有与任务相关的改动。
+- [ ] 新增行为有测试，bug 修复有回归测试。
+- [ ] 类型检查、相关测试、lint 已运行，结果已记录。
+- [ ] 没有留下因本次修改而失效的 import、变量、函数、旧路径或死链。
+- [ ] 没有调试输出、临时文件、密钥和敏感信息。
+- [ ] 相关文档、命令和配置已同步。
+- [ ] `git status -sb` 已检查，没有误碰无关改动。
+- [ ] 交接写清楚了：做了什么、验证了什么、没验证什么、还有什么风险。
+
+本项目当前没有测试、类型检查和 lint 工具，因此交付前至少确认：
+
+- [ ] `pnpm docs:build` 通过。
+- [ ] 新增页面已接入侧边栏或导航。
+- [ ] 内部链接没有死链。
+- [ ] Mermaid 代码块没有残留 ASCII 图。
+- [ ] 没有覆盖并行进程或用户未提交的改动。
+
+## 13. 项目结构与约定
+
+- `docs/.vitepress/config.ts` — 站点配置：`title`、`siteTitle`（短导航标题「软件工程手册」）、nav、sidebar 映射、本地搜索、zh-CN、GitHub Pages `base`。
+- `docs/.vitepress/sidebar/*.ts` — 每个内容区一个文件，导出 `DefaultTheme.SidebarItem[]`，由 `index.ts` 汇总。
+- `docs/.vitepress/theme/index.ts` — 扩展 DefaultTheme，并用 `HomePage.vue` 替换 `Layout`。
+- `docs/.vitepress/theme/components/HomePage.vue` — 首页通过 Layout slots（`#home-hero-info`、`#home-hero-image`、`#home-hero-after`）构建；颜色全部引用 `--home-*` 变量。
+- `docs/.vitepress/theme/custom.css` — 定义 `:root` 和 `.dark` 的 `--home-*` 调色板、`.VPHome`/`.VPHomeHero` 背景、导航微调，以及 VitePress container 的 SVG 图标。
+- `docs/<section>/` — 13 个内容区：getting-started、learning-roadmap、programming-language、backend、database、software-engineering、ai-engineering、system-design、projects、papers、ai-coding、tools、career。
+- `dev-docs/` — 内部开发资料（Superpowers plans/specs），永远不发布到站点。
+- `.github/workflows/deploy.yml` — CI：push 到 main 后构建并部署到 GitHub Pages。
+
+关键约定：
+
+- 新内容区流程：创建 `docs/<section>/index.md` → 增加 sidebar 文件 → 从 `sidebar/index.ts` 导出 → 在 `config.ts` 接入 sidebar 和 nav。
+- 首页 frontmatter 必须包含 `hero:` 键，例如 `hero: { name: ... }`；否则 VPHero 和 hero slots 不会渲染。
+- 首页颜色只改 `--home-*` 变量（`:root` 和 `.dark` 都要改），不要在 `HomePage.vue` 里硬编码颜色。品牌色：`#3451b2`（浅色）/ `#646cff`（深色）。
+- 导航标题保持短；`themeConfig.siteTitle` 太长会溢出固定侧边栏宽度并遮挡搜索框。
+- 不手改 `docs/.vitepress/dist/` 和 `node_modules/`；构建产物由 `pnpm docs:build` 生成。
+- 发现并行进程修改了其他目录时，不要回退或覆盖；在交接中说明哪些不是本次改动。
