@@ -5,5 +5,5 @@ export const databaseSidebar: DefaultTheme.SidebarItem[] = [
   { text: 'MySQL', link: '/database/mysql' },
   { text: 'Redis', link: '/database/redis' },
   { text: 'MongoDB', link: '/database/mongodb' },
-  { text: 'ElasticSearch', link: '/database/elasticsearch' },
+  { text: 'Elasticsearch', link: '/database/elasticsearch' },
 ]
