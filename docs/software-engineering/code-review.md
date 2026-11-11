@@ -155,12 +155,8 @@ Code Review 的质量，取决于团队是否把注意力放在正确的问题�
 
 ## 参考与出处
 
-本章的审查顺序、评论方式和 PR 实践参考并整理了：
-
-- Google Engineering Practices。
-- Robert C. Martin，《代码整洁之道》。
-
-结合当前团队 review 实践做了改写和补充，不是原文摘录。
+1. Google Engineering Practices
+2. 《代码整洁之道》 Robert C. Martin
 
 ## 相关阅读
 

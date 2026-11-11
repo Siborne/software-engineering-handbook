@@ -119,6 +119,7 @@ Java 不是唯一的后端选择。JVM 上有 Kotlin、Scala、Groovy，后端�
 | 标准库 | [函数式与 Stream](/programming-language/java/functional) | 如何把行为作为数据组合？ | 能写出清晰的数据处理管线 |
 | 标准库 | [IO、NIO 与网络](/programming-language/java/io) | 数据如何跨文件和网络流动？ | 能处理编码、流、文件和 HTTP |
 | 运行时 | [反射、注解与代理](/programming-language/java/reflection) | 框架如何在运行时理解和增强代码？ | 能读懂 Spring、Jackson、MyBatis 的底层套路 |
+| 运行时 | [SPI 与服务发现](/programming-language/java/spi) | 如何在运行时发现接口实现？ | 能设计可插拔的扩展点 |
 | 运行时 | [并发编程](/programming-language/java/concurrency) | 多线程如何正确共享状态？ | 能判断线程安全并排查并发问题 |
 | 运行时 | [JVM](/programming-language/java/jvm) | 字节码如何变成可运行的系统？ | 能分析内存、GC、JIT 和线上故障 |
 | 版本演进 | [现代 Java](/programming-language/java/new-features) | 新版本解决了哪些旧问题？ | 能制定版本升级和技术选型方案 |

@@ -100,12 +100,8 @@ SLI 是服务质量指标，例如“99% 的请求在 300ms 内完成”；SLO �
 
 ## 参考与出处
 
-本章的日志、指标、追踪和 SLO 实践参考并整理了：
-
-- Google SRE 团队，《Google SRE 工作手册》。
-- OpenTelemetry 官方文档。
-
-结合当前工程实践做了改写与补充。
+1. 《Google SRE 工作手册》 Google SRE 团队
+2. OpenTelemetry 官方文档
 
 ## 相关阅读
 

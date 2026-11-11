@@ -1154,16 +1154,12 @@ public class UserManager {
 
 ## 参考与出处
 
-本章的规则、反例和取舍参考并整理了：
-
-- Robert C. Martin，《代码整洁之道》。
-- Joshua Bloch，《Effective Java》。
-- Steve McConnell，《代码大全》。
-- Martin Fowler，《重构：改善既有代码的设计》。
-- Google Style Guides。
-- Google Engineering Practices。
-
-规则条目结合了当前 Java 工程实践做了改写和补充，不是原文摘录。
+1. 《代码整洁之道》 Robert C. Martin
+2. 《Effective Java》 Joshua Bloch
+3. 《代码大全》 Steve McConnell
+4. 《重构：改善既有代码的设计》 Martin Fowler
+5. Google Style Guides
+6. Google Engineering Practices
 
 ## 相关阅读
 

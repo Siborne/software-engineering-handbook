@@ -96,12 +96,8 @@ interface PricingStrategy {
 
 ## 参考与出处
 
-本章的模式分类、适用场景和取舍参考并整理了：
-
-- Erich Gamma 等，《设计模式：可复用面向对象软件的基础》。
-- Refactoring.Guru。
-
-示例结合当前 Java 工程实践做了改写。
+1. 《设计模式：可复用面向对象软件的基础》 Erich Gamma 等
+2. Refactoring.Guru
 
 ## 相关阅读
 

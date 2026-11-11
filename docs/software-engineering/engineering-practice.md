@@ -92,12 +92,8 @@ AI 可以生成代码、测试草稿、review 建议和排障假设，但人必�
 
 ## 参考与出处
 
-本章的 Definition of Done、质量门禁、技术债和发布实践参考并整理了：
-
-- Google Engineering Practices。
-- Nicole Forsgren、Jez Humble、Gene Kim，《加速：企业数字化转型的24项核心能力》。
-
-结合当前团队工程实践做了改写与补充。
+1. Google Engineering Practices
+2. 《加速：企业数字化转型的24项核心能力》 Nicole Forsgren、Jez Humble、Gene Kim
 
 ## 相关阅读
 

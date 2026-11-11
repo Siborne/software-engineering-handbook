@@ -151,14 +151,10 @@ TDD 的节奏是红、绿、重构：先写一个失败测试，明确期望行�
 
 ## 参考与出处
 
-本章的测试原则、分层和边界设计参考并整理了：
-
-- Kent Beck，《测试驱动开发》。
-- Robert C. Martin，《代码整洁之道》。
-- Martin Fowler，《重构：改善既有代码的设计》。
-- Google Engineering Practices。
-
-示例结合了当前 Java/JUnit 实践做了改写，不是原文摘录。
+1. 《测试驱动开发》 Kent Beck
+2. 《代码整洁之道》 Robert C. Martin
+3. 《重构：改善既有代码的设计》 Martin Fowler
+4. Google Engineering Practices
 
 ## 相关阅读
 

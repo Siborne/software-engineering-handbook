@@ -31,6 +31,7 @@ export const programmingLanguageSidebar: DefaultTheme.SidebarItem[] = [
         collapsed: false,
         items: [
           { text: '反射、注解与代理', link: '/programming-language/java/reflection' },
+          { text: 'SPI 与服务发现', link: '/programming-language/java/spi' },
           { text: '并发编程', link: '/programming-language/java/concurrency' },
           { text: 'JVM', link: '/programming-language/java/jvm' },
           { text: '现代 Java', link: '/programming-language/java/new-features' },
