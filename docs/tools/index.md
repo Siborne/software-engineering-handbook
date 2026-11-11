@@ -1,6 +1,6 @@
 ---
 title: 工具
-description: 开发者工具链：Git、GitHub、Linux、Docker、Nginx、VSCode、Cursor 与 Cloudflare。
+description: 开发者工具链：Git、GitHub、Linux、Docker、Nginx、VSCode、Cursor、Cloudflare 与 AI 编程工具。
 ---
 
 # 工具
@@ -25,6 +25,7 @@ description: 开发者工具链：Git、GitHub、Linux、Docker、Nginx、VSCode
 | 阶段 | 工具 | 解决问题 |
 | --- | --- | --- |
 | 写代码 | VSCode、Cursor | 编辑、调试、AI 辅助 |
+| AI 编程 | Codex、Claude Code、Copilot、Gemini CLI | 终端 Agent、补全、代码审查 |
 | 版本管理 | Git、GitHub | 变更历史、协作、CI |
 | 运行环境 | Linux、Docker | 部署、隔离、可重复环境 |
 | 入口与代理 | Nginx | 反向代理、静态资源、TLS |

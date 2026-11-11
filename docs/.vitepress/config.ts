@@ -3,15 +3,11 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 import {
   gettingStartedSidebar,
   programmingLanguageSidebar,
-  backendSidebar,
-  databaseSidebar,
+  backendSystemSidebar,
   softwareEngineeringSidebar,
-  aiEngineeringSidebar,
-  systemDesignSidebar,
+  aiSidebar,
   projectsSidebar,
   papersSidebar,
-  aiCodingSidebar,
-  toolsSidebar,
   careerSidebar,
 } from './sidebar'
 
@@ -41,24 +37,24 @@ export default withMermaid(defineConfig({
 
     nav: [
       { text: '首页', link: '/' },
-      { text: '开始', link: '/getting-started/' },
+      {
+        text: '开始',
+        link: '/getting-started/',
+        activeMatch: '/(getting-started|learning-roadmap|tools)/',
+      },
       {
         text: '知识库',
         items: [
           { text: '编程语言', link: '/programming-language/' },
-          { text: '后端', link: '/backend/' },
-          { text: '数据库', link: '/database/' },
+          { text: '后端与系统', link: '/backend/' },
           { text: '软件工程', link: '/software-engineering/' },
-          { text: '系统设计', link: '/system-design/' },
           { text: '论文', link: '/papers/' },
         ],
       },
       {
         text: 'AI 工程',
-        items: [
-          { text: 'AI 工程', link: '/ai-engineering/' },
-          { text: 'AI Coding', link: '/ai-coding/' },
-        ],
+        link: '/ai-engineering/',
+        activeMatch: '/ai-(engineering|coding)/',
       },
       { text: '项目实战', link: '/projects/' },
       { text: '成长', link: '/career/' },
@@ -68,15 +64,15 @@ export default withMermaid(defineConfig({
       '/getting-started/': gettingStartedSidebar,
       '/learning-roadmap/': gettingStartedSidebar,
       '/programming-language/': programmingLanguageSidebar,
-      '/backend/': backendSidebar,
-      '/database/': databaseSidebar,
+      '/backend/': backendSystemSidebar,
+      '/database/': backendSystemSidebar,
       '/software-engineering/': softwareEngineeringSidebar,
-      '/ai-engineering/': aiEngineeringSidebar,
-      '/system-design/': systemDesignSidebar,
+      '/ai-engineering/': aiSidebar,
+      '/system-design/': backendSystemSidebar,
       '/projects/': projectsSidebar,
       '/papers/': papersSidebar,
-      '/ai-coding/': aiCodingSidebar,
-      '/tools/': toolsSidebar,
+      '/ai-coding/': aiSidebar,
+      '/tools/': gettingStartedSidebar,
       '/career/': careerSidebar,
     },
 

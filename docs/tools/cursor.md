@@ -5,7 +5,7 @@ description: Cursor 工具配置：模型、规则、索引、快捷键、Agent�
 
 # Cursor
 
-> 这篇从“工具配置”角度讲 Cursor；补全、Agent 和代码审查的工程方法见 [AI Coding / Cursor](/ai-coding/cursor)。
+> 这篇从“工具配置”角度讲 Cursor；补全、Agent 和代码审查的工程方法见 [Cursor AI 编程](/tools/cursor-ai-coding)。
 
 ## 本章目标
 
@@ -139,6 +139,6 @@ Cursor 的核心，是把 AI 补全、编辑和 Agent 放进 IDE，并用规则�
 
 如果只能记住一件事：AI 生成越多，验证和回滚越重要。
 
-- [AI Coding / Cursor](/ai-coding/cursor)
+- [Cursor AI 编程](/tools/cursor-ai-coding)
 - [VSCode](/tools/vscode)
 - [Context](/ai-coding/context)

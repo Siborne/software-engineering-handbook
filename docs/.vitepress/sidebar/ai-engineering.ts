@@ -11,5 +11,5 @@ export const aiEngineeringSidebar: DefaultTheme.SidebarItem[] = [
   { text: 'Memory', link: '/ai-engineering/memory' },
   { text: 'RAG', link: '/ai-engineering/rag' },
   { text: 'Evaluation', link: '/ai-engineering/evaluation' },
-  { text: 'AI Coding', link: '/ai-engineering/ai-coding' },
+  { text: 'AI Coding 方法', link: '/ai-engineering/ai-coding' },
 ]

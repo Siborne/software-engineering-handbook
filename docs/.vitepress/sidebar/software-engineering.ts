@@ -38,11 +38,4 @@ export const softwareEngineeringSidebar: DefaultTheme.SidebarItem[] = [
       { text: '可观测性', link: '/software-engineering/observability' },
     ],
   },
-  {
-    text: '参考',
-    collapsed: false,
-    items: [
-      { text: '学习资源', link: '/software-engineering/resources' },
-    ],
-  },
 ]
