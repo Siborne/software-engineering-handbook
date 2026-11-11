@@ -2,7 +2,6 @@ import { defineConfig } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import {
   gettingStartedSidebar,
-  learningRoadmapSidebar,
   programmingLanguageSidebar,
   backendSidebar,
   databaseSidebar,
@@ -67,7 +66,7 @@ export default withMermaid(defineConfig({
 
     sidebar: {
       '/getting-started/': gettingStartedSidebar,
-      '/learning-roadmap/': learningRoadmapSidebar,
+      '/learning-roadmap/': gettingStartedSidebar,
       '/programming-language/': programmingLanguageSidebar,
       '/backend/': backendSidebar,
       '/database/': databaseSidebar,
