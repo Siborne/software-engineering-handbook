@@ -439,7 +439,7 @@ flowchart TD
 
 如果只能记住一件事：路线图不是课程表，而是根据项目缺口调整的学习地图。
 
-- [推荐学习路线](/getting-started/recommended-learning-path)
+- [第一周怎么开始](/getting-started/recommended-learning-path)
 - [如何利用 AI 学习](/getting-started/learning-with-ai)
 - [Java 学习地图](/programming-language/java/)
 - [软件工程](/software-engineering/)

@@ -42,16 +42,7 @@ export default withMermaid(defineConfig({
 
     nav: [
       { text: '首页', link: '/' },
-      {
-        text: '开始',
-        items: [
-          { text: '前言', link: '/getting-started/' },
-          { text: '学习路线图', link: '/learning-roadmap/' },
-          { text: '推荐学习路线', link: '/getting-started/recommended-learning-path' },
-          { text: '如何提问', link: '/getting-started/how-to-ask-questions' },
-          { text: '如何利用 AI 学习', link: '/getting-started/learning-with-ai' },
-        ],
-      },
+      { text: '开始', link: '/getting-started/' },
       {
         text: '知识库',
         items: [
@@ -70,13 +61,7 @@ export default withMermaid(defineConfig({
           { text: 'AI Coding', link: '/ai-coding/' },
         ],
       },
-      {
-        text: '实践',
-        items: [
-          { text: '项目深度解析', link: '/projects/' },
-          { text: '工具', link: '/tools/' },
-        ],
-      },
+      { text: '项目实战', link: '/projects/' },
       { text: '成长', link: '/career/' },
     ],
 

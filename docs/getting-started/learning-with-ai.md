@@ -899,7 +899,7 @@ AI 学习的核心，是用工程方法对待不确定性：
 如果只能记住一件事：AI 放大的是你的学习能力，而不是替代你的判断。
 
 - [如何提问](/getting-started/how-to-ask-questions)
-- [推荐学习路线](/getting-started/recommended-learning-path)
+- [第一周怎么开始](/getting-started/recommended-learning-path)
 - [Java 学习地图](/programming-language/java/)
 - [AI 工程](/ai-engineering/)
 - [AI Coding](/ai-coding/)
