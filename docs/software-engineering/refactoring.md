@@ -652,6 +652,15 @@ public void settleOrder(Order order) {
 
 如果只能记住一件事：没有测试保障的大规模重构，本质上是在赌博。
 
+## 参考与出处
+
+本章的代码异味、重构手法和案例参考并整理了：
+
+- Martin Fowler，《重构：改善既有代码的设计》。
+- Robert C. Martin，《代码整洁之道》。
+
+示例结合了当前 Java 工程实践做了改写，不是原文摘录。
+
 ## 相关阅读
 
 - [代码规范与工程实践](/software-engineering/code-quality)

@@ -153,6 +153,15 @@ Code Review 的质量，取决于团队是否把注意力放在正确的问题�
 
 如果只能记住一件事：Review 的目标不是找茬，而是让这次变更在进入主干之前，变得可以被理解、被验证、被回滚。
 
+## 参考与出处
+
+本章的审查顺序、评论方式和 PR 实践参考并整理了：
+
+- Google Engineering Practices。
+- Robert C. Martin，《代码整洁之道》。
+
+结合当前团队 review 实践做了改写和补充，不是原文摘录。
+
 ## 相关阅读
 
 - [代码规范与工程实践](/software-engineering/code-quality)

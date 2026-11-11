@@ -94,6 +94,15 @@ interface PricingStrategy {
 
 如果只能记住一件事：好的设计不是用了多少模式，而是读代码的人不需要跳转五个文件才能理解业务。
 
+## 参考与出处
+
+本章的模式分类、适用场景和取舍参考并整理了：
+
+- Erich Gamma 等，《设计模式：可复用面向对象软件的基础》。
+- Refactoring.Guru。
+
+示例结合当前 Java 工程实践做了改写。
+
 ## 相关阅读
 
 - [重构技巧](/software-engineering/refactoring)

@@ -98,6 +98,15 @@ SLI 是服务质量指标，例如“99% 的请求在 300ms 内完成”；SLO �
 
 如果只能记住一件事：可观测性不是“记录更多”，而是“出问题时能回答为什么”。
 
+## 参考与出处
+
+本章的日志、指标、追踪和 SLO 实践参考并整理了：
+
+- Google SRE 团队，《Google SRE 工作手册》。
+- OpenTelemetry 官方文档。
+
+结合当前工程实践做了改写与补充。
+
 ## 相关阅读
 
 - [工程实践](/software-engineering/engineering-practice)

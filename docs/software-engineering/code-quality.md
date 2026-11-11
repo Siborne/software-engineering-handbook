@@ -1152,6 +1152,19 @@ public class UserManager {
 
 如果只能记住一件事：先让命名、函数边界和异常处理可读，再追求更高级的设计。
 
+## 参考与出处
+
+本章的规则、反例和取舍参考并整理了：
+
+- Robert C. Martin，《代码整洁之道》。
+- Joshua Bloch，《Effective Java》。
+- Steve McConnell，《代码大全》。
+- Martin Fowler，《重构：改善既有代码的设计》。
+- Google Style Guides。
+- Google Engineering Practices。
+
+规则条目结合了当前 Java 工程实践做了改写和补充，不是原文摘录。
+
 ## 相关阅读
 
 - [重构技巧](/software-engineering/refactoring)
