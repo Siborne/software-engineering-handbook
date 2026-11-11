@@ -2,6 +2,7 @@ import type { DefaultTheme } from 'vitepress'
 
 export const softwareEngineeringSidebar: DefaultTheme.SidebarItem[] = [
   { text: '软件工程', link: '/software-engineering/' },
+  { text: '软件质量', link: '/software-engineering/quality' },
   { text: '代码规范', link: '/software-engineering/code-quality' },
   { text: '重构', link: '/software-engineering/refactoring' },
   { text: '测试', link: '/software-engineering/testing' },
