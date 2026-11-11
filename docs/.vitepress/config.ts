@@ -42,8 +42,16 @@ export default withMermaid(defineConfig({
 
     nav: [
       { text: '首页', link: '/' },
-      { text: '开始', link: '/getting-started/' },
-      { text: '路线图', link: '/learning-roadmap/' },
+      {
+        text: '开始',
+        items: [
+          { text: '前言', link: '/getting-started/' },
+          { text: '学习路线图', link: '/learning-roadmap/' },
+          { text: '推荐学习路线', link: '/getting-started/recommended-learning-path' },
+          { text: '如何提问', link: '/getting-started/how-to-ask-questions' },
+          { text: '如何利用 AI 学习', link: '/getting-started/learning-with-ai' },
+        ],
+      },
       {
         text: '知识库',
         items: [
@@ -51,20 +59,25 @@ export default withMermaid(defineConfig({
           { text: '后端', link: '/backend/' },
           { text: '数据库', link: '/database/' },
           { text: '软件工程', link: '/software-engineering/' },
-          { text: 'AI 工程', link: '/ai-engineering/' },
           { text: '系统设计', link: '/system-design/' },
-          { text: '项目', link: '/projects/' },
-        ],
-      },
-      {
-        text: '更多',
-        items: [
-          { text: 'AI Coding', link: '/ai-coding/' },
-          { text: '工具', link: '/tools/' },
-          { text: '职业', link: '/career/' },
           { text: '论文', link: '/papers/' },
         ],
       },
+      {
+        text: 'AI 工程',
+        items: [
+          { text: 'AI 工程', link: '/ai-engineering/' },
+          { text: 'AI Coding', link: '/ai-coding/' },
+        ],
+      },
+      {
+        text: '实践',
+        items: [
+          { text: '项目深度解析', link: '/projects/' },
+          { text: '工具', link: '/tools/' },
+        ],
+      },
+      { text: '成长', link: '/career/' },
     ],
 
     sidebar: {
