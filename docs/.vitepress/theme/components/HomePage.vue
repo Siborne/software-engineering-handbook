@@ -16,6 +16,7 @@ import {
   ArrowRight,
   Sparkles,
   GraduationCap,
+  FlaskConical,
 } from '@lucide/vue'
 
 const { Layout } = DefaultTheme
@@ -28,6 +29,7 @@ const features = [
   { icon: Database, title: '数据库', desc: 'MySQL、Redis、Elasticsearch、MongoDB', link: '/database/' },
   { icon: Building2, title: '软件工程', desc: '设计模式、DDD、测试、重构、CI/CD、可观测性', link: '/software-engineering/' },
   { icon: Bot, title: 'AI 工程', desc: 'Agent、MCP、RAG、Prompt Engineering、上下文工程', link: '/ai-engineering/' },
+  { icon: FlaskConical, title: '科研', desc: '文献精读、问题与 Idea、实验、论文写作与 Rebuttal', link: '/research/' },
   { icon: Triangle, title: '系统设计', desc: '认证系统、缓存、消息队列、分布式锁、If I Were 系列', link: '/system-design/' },
   { icon: Wrench, title: '项目实战', desc: 'AI Agent、Blog、Delper — 从设计方案到 Demo', link: '/projects/' },
   { icon: Laptop, title: 'AI Coding', desc: 'Claude Code、Cursor、GitHub Copilot、Codex 使用指南', link: '/ai-coding/' },
@@ -65,7 +67,7 @@ const steps = [
           <a class="btn btn-ghost" href="/learning-roadmap/">查看学习路线</a>
         </div>
         <div class="hero-meta">
-          <span><b>13</b> 大知识板块</span>
+          <span><b>14</b> 大知识板块</span>
           <span class="dot">·</span>
           <span><b>100+</b> 技术主题</span>
           <span class="dot">·</span>
@@ -86,7 +88,7 @@ const steps = [
         <div class="section-head">
           <p class="section-eyebrow">Knowledge Base</p>
           <h2>系统化知识库</h2>
-          <p class="sub">13 个板块 · 从基础到 AI 工程，构建完整知识体系</p>
+          <p class="sub">14 个板块 · 从基础到 AI 工程与科研，构建完整知识体系</p>
         </div>
         <div class="features-grid">
           <a v-for="f in features" :key="f.title" :href="f.link" class="card">

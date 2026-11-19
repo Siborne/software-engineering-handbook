@@ -308,7 +308,7 @@ Workflow: 先识别意图，再按步骤输出
 - `docs/.vitepress/theme/index.ts` — 扩展 DefaultTheme，并用 `HomePage.vue` 替换 `Layout`。
 - `docs/.vitepress/theme/components/HomePage.vue` — 首页通过 Layout slots（`#home-hero-info`、`#home-hero-image`、`#home-hero-after`）构建；颜色全部引用 `--home-*` 变量。
 - `docs/.vitepress/theme/custom.css` — 定义 `:root` 和 `.dark` 的 `--home-*` 调色板、`.VPHome`/`.VPHomeHero` 背景、导航微调，以及 VitePress container 的 SVG 图标。
-- `docs/<section>/` — 13 个内容区：getting-started、learning-roadmap、programming-language、backend、database、software-engineering、ai-engineering、system-design、projects、papers、ai-coding、tools、career。
+- `docs/<section>/` — 14 个内容区：getting-started、learning-roadmap、programming-language、backend、database、software-engineering、ai-engineering、research、system-design、projects、papers、ai-coding、tools、career。
 - `dev-docs/` — 内部开发资料（Superpowers plans/specs），永远不发布到站点。
 - `.github/workflows/deploy.yml` — CI：push 到 main 后构建并部署到 GitHub Pages。
 

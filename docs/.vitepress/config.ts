@@ -7,7 +7,7 @@ import {
   softwareEngineeringSidebar,
   aiSidebar,
   projectsSidebar,
-  papersSidebar,
+  researchSidebar,
   careerSidebar,
 } from './sidebar'
 
@@ -48,13 +48,22 @@ export default withMermaid(defineConfig({
           { text: '编程语言', link: '/programming-language/' },
           { text: '后端与系统', link: '/backend/' },
           { text: '软件工程', link: '/software-engineering/' },
-          { text: '论文', link: '/papers/' },
         ],
       },
       {
         text: 'AI 工程',
         link: '/ai-engineering/',
         activeMatch: '/ai-(engineering|coding)/',
+      },
+      {
+        text: '科研',
+        activeMatch: '/(research|papers)/',
+        items: [
+          { text: '科研总览', link: '/research/' },
+          { text: '论文写作', link: '/research/writing' },
+          { text: '论文阅读', link: '/papers/' },
+          { text: '原始科研仓库', link: 'https://github.com/Siborne/how-to-research' },
+        ],
       },
       { text: '项目实战', link: '/projects/' },
       { text: '成长', link: '/career/' },
@@ -70,7 +79,8 @@ export default withMermaid(defineConfig({
       '/ai-engineering/': aiSidebar,
       '/system-design/': backendSystemSidebar,
       '/projects/': projectsSidebar,
-      '/papers/': papersSidebar,
+      '/research/': researchSidebar,
+      '/papers/': researchSidebar,
       '/ai-coding/': aiSidebar,
       '/tools/': gettingStartedSidebar,
       '/career/': careerSidebar,
