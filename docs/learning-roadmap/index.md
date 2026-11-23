@@ -229,6 +229,7 @@ flowchart TD
 ### 重点内容
 
 - 代码规范、重构、测试金字塔和可维护测试。
+- 数据定义、设计配方、结构递归和抽象时机。
 - Code Review、质量门禁和技术债。
 - 设计模式、DDD、模块边界和依赖方向。
 - 单体、模块化单体、微服务和分布式复杂度。
@@ -238,6 +239,7 @@ flowchart TD
 对应章节：
 
 - [软件工程](/software-engineering/)
+- [程序设计方法](/software-engineering/program-design)
 - [架构](/software-engineering/architecture)
 - [测试](/software-engineering/testing)
 - [CI/CD](/software-engineering/ci-cd)

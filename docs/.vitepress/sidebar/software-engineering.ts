@@ -24,6 +24,7 @@ export const softwareEngineeringSidebar: DefaultTheme.SidebarItem[] = [
     text: '工程与设计',
     collapsed: false,
     items: [
+      { text: '程序设计方法', link: '/software-engineering/program-design' },
       { text: '工程实践', link: '/software-engineering/engineering-practice' },
       { text: '设计模式', link: '/software-engineering/design-patterns' },
       { text: 'DDD', link: '/software-engineering/ddd' },

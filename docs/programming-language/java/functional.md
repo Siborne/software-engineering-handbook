@@ -19,6 +19,28 @@ description: Lambda、函数式接口、方法引用、Optional、Stream 管线�
 - 使用 Collector 完成分组、聚合和转换。
 - 避免并行流、副作用和 `toMap` 等常见陷阱。
 
+## 从重复函数到高阶函数
+
+HtDP 讲抽象时先比较函数：如果两个函数的输入、输出和递归骨架相同，只有中间某一步操作不同，那么这个操作就可以变成参数。Java 的 `Predicate`、`Function` 和 `Comparator` 本质上都是这个思路：把“变化的行为”从“固定的数据结构处理流程”中抽出来。
+
+例如，订单汇总的骨架通常是“遍历订单、筛选、取金额、累加”。如果为每种筛选条件各写一个方法，重复的是骨架，变化的是判断条件：
+
+```java
+static BigDecimal total(
+        List<Order> orders,
+        Predicate<Order> included
+) {
+    return orders.stream()
+        .filter(included)
+        .map(Order::amount)
+        .reduce(BigDecimal.ZERO, BigDecimal::add);
+}
+```
+
+调用方传 `Order::isPaid`、`order -> order.amount().compareTo(limit) > 0` 或任意组合条件，复用的是流程，不是具体规则。HtDP 强调“先看到重复，再抽象”：如果两个函数只是长得像，但业务含义和失败处理不同，过早合并会把差异塞进布尔参数，最后得到一个更难读的万能方法。
+
+这一节参考 HtDP 第 14—17 章关于相似函数、抽象和高阶函数的内容；本站的工程化归纳见[程序设计方法](/software-engineering/program-design)。
+
 ## 一、从匿名类到 Lambda
 
 Java 8 之前，传递一段行为通常需要匿名内部类：
@@ -602,3 +624,4 @@ long count = orders.parallelStream()
 - [集合框架](/programming-language/java/collections)
 - [并发编程](/programming-language/java/concurrency)
 - [Java 工程实践](/programming-language/java/engineering)
+- [程序设计方法](/software-engineering/program-design)

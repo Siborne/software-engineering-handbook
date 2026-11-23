@@ -430,6 +430,38 @@ public Optional<User> findUser(Long id) {
 
 **依据**：《Effective Java》
 
+### 3.4 数据定义先于函数实现
+
+HtDP 的一个核心判断是：函数的形状由数据定义决定。写函数前先说明输入有哪些合法形状、每种形状代表什么、哪些状态根本不存在，分支就不会靠实现时临时猜测。一个字符串字段可以表示“待支付、已支付、已发货”，但类型系统只能看到 `String`，调用方无法知道还有哪些值，编译器也无法检查是否漏掉状态。
+
+把有限状态建模成明确的类型，通常比增加一层 `if` 更有价值：
+
+```java
+sealed interface OrderState permits Pending, Paid, Shipped, Cancelled {}
+
+record Pending(LocalDateTime createdAt) implements OrderState {}
+record Paid(String paymentId, LocalDateTime paidAt) implements OrderState {}
+record Shipped(String trackingNo, LocalDateTime shippedAt) implements OrderState {}
+record Cancelled(String reason, LocalDateTime cancelledAt) implements OrderState {}
+```
+
+这时 `switch` 必须覆盖所有状态，新增状态会让遗漏的分支在编译期暴露。数据定义还要说明字段约束：金额不能为负、已支付状态必须有支付流水、取消状态必须有原因。类型负责排除一部分非法组合，构造器和校验负责剩下的业务不变量。
+
+| 数据形状 | 代码设计问题 |
+| --- | --- |
+| 有限枚举 | 是否每个值都有明确语义，未知值是否被拒绝 |
+| 区间 | 边界是开还是闭，越界如何表达 |
+| 结构 / record | 哪些字段必须同时存在，构造后是否还能破坏不变量 |
+| 联合 / sealed type | 分支是否穷举，新增变体影响哪些函数 |
+| 列表 / 树 | 空结构、单元素和递归结构是否有对应分支 |
+| 自引用数据 | 递归在哪个字段上发生，基准情况是什么 |
+
+这也是 Code Review 应该先看的问题。一个函数里有大量 `if (status.equals("..."))`，可能不是分支写得不好，而是状态没有建模；一个方法接收六个可空参数，可能不是校验不够，而是输入对象没有定义。先修数据定义，再拆函数，往往比在错误模型上继续提取方法更有效。
+
+::: tip 数据定义不是类型声明的同义词
+`String status` 也有数据定义，只不过它只存在于文档和人的记忆里。把它变成枚举、sealed type 或带约束的值对象，是为了让非法状态无法构造，让遗漏分支能够被发现。
+:::
+
 ## 四、代码结构与设计
 
 ### 4.1 避免重复
@@ -1160,11 +1192,13 @@ public class UserManager {
 4. 《重构：改善既有代码的设计》 Martin Fowler
 5. Google Style Guides
 6. Google Engineering Practices
+7. [How to Design Programs, Second Edition](https://htdp.org/2026-5-28/Book/index.html)
 
 ## 相关阅读
 
 - [重构技巧](/software-engineering/refactoring)
 - [测试](/software-engineering/testing)
+- [程序设计方法](/software-engineering/program-design)
 - [Code Review](/software-engineering/code-review)
 - [工程实践](/software-engineering/engineering-practice)
 - [设计模式](/software-engineering/design-patterns)

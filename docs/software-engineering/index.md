@@ -22,17 +22,18 @@ description: 从代码规范、重构、测试到架构与工程实践的学习�
 
 1. [软件质量](/software-engineering/quality)：理解缺陷、质量成本和预防/早发现/纠正三种手段。
 2. [软件开发常识与思考](/software-engineering/programming-wisdom)：语言、艺术、技巧、性能、缺陷分级和常见误区。
-3. [代码规范与工程实践](/software-engineering/code-quality)：命名、函数、注释、异常、测试、Java 专项与 Code Review 清单。
-4. [重构技巧](/software-engineering/refactoring)：识别代码异味，用小步重构改善现有代码。
-5. [测试](/software-engineering/testing)：用测试保护重构，建立质量反馈环。
-6. [Code Review](/software-engineering/code-review)：把个人经验变成团队可执行的检查标准。
-7. [工程实践](/software-engineering/engineering-practice)：把代码质量放进真实的团队流程。
-8. [设计模式](/software-engineering/design-patterns)：在合适的场景使用合适的抽象。
-9. [DDD](/software-engineering/ddd)：用领域模型组织复杂业务。
-10. [架构](/software-engineering/architecture)：理解模块边界、依赖方向和演进式设计。
-11. [CI/CD](/software-engineering/ci-cd)：让规范、测试和构建自动运行。
-12. [可观测性](/software-engineering/observability)：让系统在出问题时可以被看见。
-13. [学习资源](/software-engineering/resources)：按优先级选择下一本书、规范和工具。
+3. [程序设计方法](/software-engineering/program-design)：用数据定义、设计配方、模板和测试组织程序。
+4. [代码规范与工程实践](/software-engineering/code-quality)：命名、函数、注释、异常、测试、Java 专项与 Code Review 清单。
+5. [重构技巧](/software-engineering/refactoring)：识别代码异味，用小步重构改善现有代码。
+6. [测试](/software-engineering/testing)：用测试保护重构，建立质量反馈环。
+7. [Code Review](/software-engineering/code-review)：把个人经验变成团队可执行的检查标准。
+8. [工程实践](/software-engineering/engineering-practice)：把代码质量放进真实的团队流程。
+9. [设计模式](/software-engineering/design-patterns)：在合适的场景使用合适的抽象。
+10. [DDD](/software-engineering/ddd)：用领域模型组织复杂业务。
+11. [架构](/software-engineering/architecture)：理解模块边界、依赖方向和演进式设计。
+12. [CI/CD](/software-engineering/ci-cd)：让规范、测试和构建自动运行。
+13. [可观测性](/software-engineering/observability)：让系统在出问题时可以被看见。
+14. [学习资源](/software-engineering/resources)：按优先级选择下一本书、规范和工具。
 
 ## 建议的学习方式
 
@@ -48,6 +49,7 @@ description: 从代码规范、重构、测试到架构与工程实践的学习�
 软件工程的学习路径可以压缩成三句话：
 
 - 先把代码写清楚，再学会用测试和重构保护变化。
+- 先用数据定义和设计配方想清楚问题，再进入实现。
 - 用 Code Review 和工程实践把个人习惯变成团队默认。
 - 最后再进入设计模式、DDD 和架构，避免在复杂抽象里迷失。
 

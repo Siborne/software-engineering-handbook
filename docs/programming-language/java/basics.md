@@ -556,6 +556,27 @@ public void log(String level, String... messages) {
 
 可变参数本质上是数组。调用时传入 `null` 可能导致歧义，生产 API 中应谨慎使用。
 
+### 递归方法与数据结构
+
+递归不是“方法调用自己”这么简单，而是把问题变成同一类、规模更小的子问题。HtDP 的结构递归强调让递归沿着数据定义中的直接子结构前进：列表处理 `first/rest`，树处理左右子树，表达式处理子表达式。先写清基准情况，再写递归情况，终止性才有依据。
+
+```java
+record TreeNode(int value, TreeNode left, TreeNode right) {}
+
+static int sum(TreeNode node) {
+    if (node == null) {
+        return 0;
+    }
+    return node.value()
+        + sum(node.left())
+        + sum(node.right());
+}
+```
+
+这里 `null` 表示空树，每次递归都移动到子树，所以树有限时递归会终止。真实业务中更推荐用 `sealed interface` 区分 `Empty` 和 `Branch`，避免调用方忘记处理空树。Java 不保证尾调用优化，递归深度随数据规模增长时仍可能触发 `StackOverflowError`；深链、超大文件或长列表通常应改为迭代或显式栈。
+
+这一节的递归视角参考 HtDP 第 8—9 章关于列表、自引用数据和结构递归的内容，工程化归纳见[程序设计方法](/software-engineering/program-design)。
+
 ## 九、数组
 
 ### 创建与初始化

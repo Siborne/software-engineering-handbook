@@ -282,6 +282,8 @@ public record PaymentPending(String transactionId) implements PaymentResult {
 
 它适合表达有限的状态集合，让编译器帮助检查分支是否完整。
 
+从 HtDP 的数据定义视角看，密封接口不是为了“少写一个 `else`”，而是为了把一组互斥状态变成可穷举的数据形状。每个实现类型对应一个合法变体，构造函数和字段约束负责说明该变体必须具备什么信息。这样新增状态时，所有 `switch` 都会在编译期暴露遗漏；比在字符串状态上补一个 `if` 更可靠。数据建模的完整思路见[程序设计方法](/software-engineering/program-design)。
+
 ### instanceof 模式匹配
 
 ```java
@@ -605,4 +607,5 @@ Java 17/21 的默认 GC、容器资源识别和 JIT 行为可能与 Java 8 不�
 - [Java 集合](/programming-language/java/collections)
 - [Java 并发](/programming-language/java/concurrency)
 - [JVM](/programming-language/java/jvm)
+- [程序设计方法](/software-engineering/program-design)
 - [JDK 25 官方特性列表](https://openjdk.org/projects/jdk/25/)

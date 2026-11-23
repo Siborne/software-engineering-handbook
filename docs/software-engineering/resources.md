@@ -35,6 +35,7 @@ description: 按优先级整理代码质量、重构、测试和跨语言学习�
 | --- | --- | --- | --- |
 | [Refactoring Catalog](https://refactoring.com/catalog/) | 免费目录 | 按代码异味查具体重构手法 | 重构时当作速查表 |
 | [Google Engineering Practices](https://google.github.io/eng-practices/) | 免费规范 | 理解团队 Code Review 和协作方式 | 对照现有 review 流程改进 |
+| [How to Design Programs, 2e](https://htdp.org/2026-5-28/Book/index.html) | 免费书 | 学习数据定义、设计配方和递归设计 | 配合[程序设计方法](/software-engineering/program-design)练习；原文采用 CC BY-NC-ND 2.0，仅供非商业学习 |
 | 《代码大全》 | 书 | 建立软件构建、复杂度和可维护性的系统视角 | 当工具书，按主题查阅，不必通读 |
 | [Refactoring.Guru](https://refactoring.guru/) | 免费图解 | 用图示理解重构和设计模式 | 遇到具体问题时查 |
 | [SourceMaking](https://sourcemaking.com/refactoring) | 免费目录 | 另一种重构手法索引 | 与 Refactoring Catalog 对照 |
@@ -76,6 +77,7 @@ description: 按优先级整理代码质量、重构、测试和跨语言学习�
 | 重构 | 怎么改善现有结构 | 不能替代测试和需求判断 |
 | 代码大全 | 怎么理解软件构建和复杂度 | 不能替代真实项目经验 |
 | Google 工程实践 | 团队如何 review 和协作 | 不能替代组织文化 |
+| How to Design Programs | 如何从数据定义推导函数结构 | 不能替代真实业务建模和工程约束 |
 | Effective TypeScript 等 | 换语言时如何遵循当地惯用法 | 不能替代跨语言工程思想 |
 
 ## 四、30 天学习计划
@@ -128,6 +130,7 @@ description: 按优先级整理代码质量、重构、测试和跨语言学习�
 ## 相关阅读
 
 - [代码规范与工程实践](/software-engineering/code-quality)
+- [程序设计方法](/software-engineering/program-design)
 - [重构技巧](/software-engineering/refactoring)
 - [测试](/software-engineering/testing)
 - [Code Review](/software-engineering/code-review)

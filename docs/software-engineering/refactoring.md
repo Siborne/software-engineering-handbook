@@ -620,6 +620,39 @@ public void settleOrder(Order order) {
 - 订单状态变化由 `Order` 自己管理，避免服务层直接操作内部字段。
 - 折扣常量有了明确名字，后续调整不需要在代码里搜索魔法数字。
 
+## 数据驱动重构：先修模型，再拆函数
+
+有些代码异味不是函数边界问题，而是数据定义问题。代码里到处比较 `"P"`、`"PAID"`、`"paid"`，每个方法都自己判断哪些状态可以操作，新增一个状态就要全局搜索。此时提取函数只能把重复的判断换一个位置，真正的修法是先把状态恢复成有限、明确的类型。
+
+HtDP 的做法是先列出数据的合法形状，再让函数按形状分支。工程上可以按这个顺序重构：
+
+1. 收集代码中实际出现的状态字符串、数字和空值，确认哪些是合法状态。
+2. 把魔法值替换成枚举、sealed type 或值对象，并集中定义含义。
+3. 用穷举 `switch` 或模式匹配改写分支，删除“不认识就默认通过”的兜底逻辑。
+4. 补状态转换测试，确认非法转换被拒绝。
+5. 数据模型稳定后，再评估哪些函数可以合并、移动或抽象。
+
+```java
+// 重构前：调用方必须记住字符串，错误只能在运行时发现
+if ("paid".equals(order.getStatus())) {
+    ship(order);
+}
+
+// 重构后：合法状态由类型表达，遗漏分支在编译期暴露
+switch (order.getState()) {
+    case Paid paid -> ship(order, paid);
+    case Pending ignored -> reject("order is not paid");
+    case Shipped ignored -> reject("order is already shipped");
+    case Cancelled ignored -> reject("order is cancelled");
+}
+```
+
+数据驱动重构的收益通常比继续拆函数更大：分支数量减少了，非法状态不容易构造，review 也能直接检查“新增状态影响了哪些 switch”。代价是它会触及持久化、API 和旧数据迁移，不能当成纯内部重构悄悄上线。数据库字段、外部契约和历史数据要一起设计兼容路径。
+
+::: warning 不要用抽象掩盖非法状态
+把字符串换成枚举，不等于完成了数据建模。如果枚举仍允许 `PAID` 没有支付流水、`SHIPPED` 没有物流单号，非法状态只是换了一个类型。数据不变量仍要由构造器、校验和测试守住。
+:::
+
 ## 重构的常见误区
 
 - **没有测试就大改**：重构的前提是能验证行为没有变化。
@@ -656,6 +689,7 @@ public void settleOrder(Order order) {
 
 1. 《重构：改善既有代码的设计》 Martin Fowler
 2. 《代码整洁之道》 Robert C. Martin
+3. [How to Design Programs, Second Edition](https://htdp.org/2026-5-28/Book/index.html)
 
 ## 相关阅读
 
@@ -664,3 +698,4 @@ public void settleOrder(Order order) {
 - [Code Review](/software-engineering/code-review)
 - [设计模式](/software-engineering/design-patterns)
 - [工程实践](/software-engineering/engineering-practice)
+- [程序设计方法](/software-engineering/program-design)
